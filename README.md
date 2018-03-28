@@ -4,6 +4,10 @@ Website where you can buy legoes to build a house
 Made by Sebastian Lundsgaard-Larsen
 github.com/Sebbelicious
 
+# TO LOG IN AS EMPLOYEE:
+use: 
+email: employee1@legobuilder.com
+password: ilovelego
 
 # Et lego hus
 I har i de sidste uger arbejdet i grupper. For at give jer chancen for at checke, at I også kan bygge et lille web-program selv, så skal I lave dette system alene.
