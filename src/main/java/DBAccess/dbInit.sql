@@ -64,7 +64,6 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `LegoHouse`;
-INSERT INTO `LegoHouse`.`user` (`iduser`, `email`, `password`, `role`) VALUES (1, '\'employee1@legobuilder.com\'', '\'ilovelego\'', '\'employee\'');
-
+INSERT INTO `LegoHouse`.`user` (`iduser`, `email`, `password`, `role`) VALUES (1, 'employee1@legobuilder.com', 'ilovelego', 'employee');
 COMMIT;
 
