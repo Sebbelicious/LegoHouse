@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DBAccess;
+package Data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,8 +19,8 @@ public class DBConnector {
     private static final int PORT = 3306;
     public static final String DATABASE = "LegoHouse"; 
     private static final String URL = "jdbc:mysql://"+ IP + ":" + PORT + "/" + DATABASE;
-    private static final String USERNAME = "sebastian";
-    private static final String PASSWORD = "Hvadfanden10";
+    private static final String USERNAME = "legohouseuser";
+    private static final String PASSWORD = "ilovelego";
 
     private static Connection singleton;
 

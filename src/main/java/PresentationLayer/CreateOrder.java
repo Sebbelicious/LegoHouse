@@ -18,28 +18,23 @@ import javax.servlet.http.HttpSession;
  *
  * @author s_ele
  */
-public class Login extends Command
+public class CreateOrder extends Command
 {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException
     {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        User user = LogicFacade.login(email, password);
+        int length = Integer.parseInt(request.getParameter("length"));
+        int width = Integer.parseInt(request.getParameter("width"));
+        int height = Integer.parseInt(request.getParameter("height"));
         HttpSession session = request.getSession();
-        session.setAttribute("user", user);
-        session.setAttribute("role", user.getRole().getName());
-        List<Order> orders;
-        if (user.getRole().getName().equals("employee"))
-        {
-            orders = LogicFacade.getOrdersEmployee();
-        } else
-        {
-            orders = LogicFacade.getOrdersCustomer(user);
-        }
+        User user = (User) session.getAttribute("user");
+        LogicFacade.createOrder(user, length, width, height);
+        
+        List<Order> orders = LogicFacade.getOrdersCustomer(user);
         request.setAttribute("orders", orders);
+        request.setAttribute("message", "Your order was successfull");
         return user.getRole().getName() + "page";
     }
-
+    
 }

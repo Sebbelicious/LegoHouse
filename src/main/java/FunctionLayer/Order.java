@@ -9,94 +9,117 @@ package FunctionLayer;
  *
  * @author s_ele
  */
-public class Order {
-    
+public class Order
+{
+
     private int idorder;
     private int length;
     private int width;
     private int height;
-    public enum OrderStatus {
-        pending("pending"), 
+
+    public enum OrderStatus
+    {
+        pending("pending"),
         sent("sent");
-    
+
         private String status;
-        
-        OrderStatus(String status) {
+
+        OrderStatus(String status)
+        {
             this.status = status;
         }
-        
-        public String getName() {
+
+        public String getName()
+        {
             return status;
         }
     }
     private OrderStatus status;
+    private String blocks = "";
     private int user_iduser;
 
-    public Order(int length, int width, int height, OrderStatus status, int user_iduser) {
+    public Order(int length, int width, int height, int user_iduser)
+    {
         this.length = length;
         this.width = width;
         this.height = height;
-        this.status = status;
         this.user_iduser = user_iduser;
     }
 
-    
-    public int getIdorder() {
+    public int getIdorder()
+    {
         return idorder;
     }
 
-    public int getLength() {
+    public int getLength()
+    {
         return length;
     }
 
-    public int getWidth() {
+    public int getWidth()
+    {
         return width;
     }
 
-    public int getHeight() {
+    public int getHeight()
+    {
         return height;
     }
 
-    public OrderStatus getStatus() {
+    public OrderStatus getStatus()
+    {
         return status;
     }
 
-    public int getUser_iduser() {
+    public String getBlocks()
+    {
+        return blocks;
+    }
+
+    public int getUser_iduser()
+    {
         return user_iduser;
     }
-    
-    public void setIdorder(int idorder) {
+
+    public void setIdorder(int idorder)
+    {
         this.idorder = idorder;
     }
 
-    public void setLength(int length) {
+    public void setLength(int length)
+    {
         this.length = length;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(int width)
+    {
         this.width = width;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(int height)
+    {
         this.height = height;
     }
 
-    public void setStatus(OrderStatus status) {
+    public void setStatus(OrderStatus status)
+    {
         this.status = status;
     }
 
-    public void setUser_iduser(int user_iduser) {
+    public void setBlocks(String blocks)
+    {
+        this.blocks = blocks;
+    }
+
+    public void setUser_iduser(int user_iduser)
+    {
         this.user_iduser = user_iduser;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Order{" + "idorder=" + idorder + ", length=" + length + ", width=" + width + ", height=" + height + ", status=" + status + ", user_iduser=" + user_iduser + '}';
     }
 
-    
-
-    
-    
-    
 }

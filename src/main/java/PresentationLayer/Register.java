@@ -7,7 +7,10 @@ package PresentationLayer;
 
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
+import FunctionLayer.Order;
 import FunctionLayer.User;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,7 +30,9 @@ public class Register extends Command {
             User user = LogicFacade.createUser( email, password1 );
             HttpSession session = request.getSession();
             session.setAttribute( "user", user );
-            session.setAttribute( "role", user.getRole() );
+            session.setAttribute( "role", user.getRole().getName() );
+            session.setAttribute( "orders", new ArrayList<Order>() );
+            
             return user.getRole().getName() + "page";
         } else {
             throw new LoginSampleException( "the two passwords did not match" );

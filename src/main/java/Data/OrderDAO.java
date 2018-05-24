@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DBAccess;
+package Data;
 
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Order;
@@ -26,13 +26,12 @@ public class OrderDAO {
     public static void createOrder(User user, Order order) throws LoginSampleException {
         try {
             Connection con = DBConnector.connection();
-            String SQL = "INSERT INTO order (length, width, height, status, user_userid) VALUES (?, ?, ?, ?, ?)";
+            String SQL = "INSERT INTO `order` (length, width, height, user_iduser) VALUES (?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, order.getLength());
             ps.setInt(2, order.getWidth());
             ps.setInt(3, order.getHeight());
-            ps.setString(4, order.getStatus().getName());
-            ps.setInt(5, user.getIduser());
+            ps.setInt(4, user.getIduser());
             ps.executeUpdate();
             ResultSet ids = ps.getGeneratedKeys();
             ids.next();
@@ -49,8 +48,7 @@ public class OrderDAO {
         try {
             List<Order> orders = new ArrayList();
             Connection con = DBConnector.connection();
-            String SQL = "SELECT idorder, length, width, height, status FROM order "
-                    + "WHERE user_iduser=?";
+            String SQL = "SELECT `idorder`, `length`, `width`, `height`, `status` FROM `order` WHERE `user_iduser`=?";
             PreparedStatement ps = con.prepareStatement(SQL);
             int user_iduser = user.getIduser();
             ps.setInt(1, user_iduser);
@@ -61,8 +59,9 @@ public class OrderDAO {
                 int width = rs.getInt("width");
                 int height = rs.getInt("height");
                 OrderStatus status = OrderStatus.valueOf(rs.getString("status"));
-                Order order = new Order(length, width, height, status, user_iduser);
+                Order order = new Order(length, width, height, user_iduser);
                 order.setIdorder(idorder);
+                order.setStatus(status);
 
                 orders.add(order);
             }
@@ -77,7 +76,7 @@ public class OrderDAO {
         try {
             List<Order> orders = new ArrayList();
             Connection con = DBConnector.connection();
-            String SQL = "SELECT * FROM order";
+            String SQL = "SELECT * FROM `order`";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -87,13 +86,27 @@ public class OrderDAO {
                 int height = rs.getInt("height");
                 OrderStatus status = OrderStatus.valueOf(rs.getString("status"));
                 int user_iduser = rs.getInt("user_iduser");
-                Order order = new Order(length, width, height, status, user_iduser);
+                Order order = new Order(length, width, height, user_iduser);
                 order.setIdorder(idorder);
+                order.setStatus(status);
 
                 orders.add(order);
             }
             return orders;
 
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+    
+    public static void updateOrderStatus(int orderid) throws  LoginSampleException {
+        try {
+            Connection con = DBConnector.connection();
+            String SQL = "UPDATE `order` SET status = ? WHERE idorder = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, "sent");
+            ps.setInt(2, orderid);
+            ps.executeUpdate();
         } catch (ClassNotFoundException | SQLException ex) {
             throw new LoginSampleException(ex.getMessage());
         }

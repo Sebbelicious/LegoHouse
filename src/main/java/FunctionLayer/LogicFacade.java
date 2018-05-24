@@ -5,8 +5,8 @@
  */
 package FunctionLayer;
 
-import DBAccess.OrderDAO;
-import DBAccess.UserDAO;
+import Data.OrderDAO;
+import Data.UserDAO;
 import FunctionLayer.Order.OrderStatus;
 import FunctionLayer.User.UserRole;
 import java.util.List;
@@ -27,10 +27,9 @@ public class LogicFacade {
         return user;
     }
     
-    public static Order createOrder(User user, int length, int width, int height, OrderStatus status) throws LoginSampleException {
-        Order order = new Order(length, width, height, status, user.getIduser());
+    public static void createOrder(User user, int length, int width, int height) throws LoginSampleException {
+        Order order = new Order(length, width, height, user.getIduser());
         OrderDAO.createOrder(user, order);
-        return order;
     }
     
     public static List<Order> getOrdersCustomer(User user) throws LoginSampleException {
@@ -41,5 +40,8 @@ public class LogicFacade {
         return OrderDAO.getOrdersEmployee();
     }
     
+    public static void updateOrderStatus(int idorder) throws LoginSampleException {
+        OrderDAO.updateOrderStatus(idorder);
+    }
     
 }//CLASS

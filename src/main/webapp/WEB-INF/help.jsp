@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Mar 28, 2018, 2:17:18 AM
+    Document   : help
+    Created on : Mar 19, 2018, 10:27:30 AM
     Author     : s_ele
 --%>
 
@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Help Page</title>
     </head>
     <body>
-        <h1>Lego House</h1>
+        <h1>Help is on its way</h1>
     </body>
 </html>
