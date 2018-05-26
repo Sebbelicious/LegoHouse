@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Data;
 
 import java.sql.Connection;
@@ -14,11 +9,10 @@ import java.sql.SQLException;
  * @author s_ele
  */
 public class DBConnector {
-    //    private static final String URL = "jdbc:mysql://46.101.253.149:3306/useradmin";
     private static final String IP = "138.68.68.197"; 
     private static final int PORT = 3306;
     public static final String DATABASE = "LegoHouse"; 
-    private static final String URL = "jdbc:mysql://"+ IP + ":" + PORT + "/" + DATABASE;
+    private static final String URL = "jdbc:mysql://"+ IP + ":" + PORT + "/" + DATABASE + "?autoReconnect=true";
     private static final String USERNAME = "legohouseuser";
     private static final String PASSWORD = "ilovelego";
 
